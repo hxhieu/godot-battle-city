@@ -17,3 +17,8 @@ data_*/
 
 # End of https://www.toptal.com/developers/gitignore/api/godot
 
+# godot-rust
+*.so
+*.dll
+*.dylib
+
