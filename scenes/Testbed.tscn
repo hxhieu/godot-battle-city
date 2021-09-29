@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://models/player.obj" type="ArrayMesh" id=1]
 [ext_resource path="res://objects/floor/floor_solid.material" type="Material" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://objects/wall/wall_full.material" type="Material" id=4]
 [ext_resource path="res://godot_battle_city.meshlib" type="MeshLibrary" id=5]
 [ext_resource path="res://objects/player/player_yellow.material" type="Material" id=6]
+[ext_resource path="res://objects/player/player.gdns" type="Script" id=7]
 
 [sub_resource type="PlaneMesh" id=1]
 
@@ -42,7 +43,7 @@ cell_center_x = false
 cell_center_y = false
 cell_center_z = false
 data = {
-"cells": PoolIntArray( 6, 0, 2, 8, 0, 2, 65528, 0, 2, 65530, 0, 2, 2, 2, 2, 65534, 2, 2, 0, 3, 2, 2, 4, 2, 6, 4, 2, 10, 4, 2, 65526, 4, -1610612734, 65530, 4, 2, 65534, 4, 2, 2, 6, 2, 6, 6, -1610612734, 10, 6, -1610612734, 65526, 6, 2, 65530, 6, 2, 65534, 6, 2, 2, 8, 2, 6, 8, 2, 10, 8, 2, 65526, 8, 1073741826, 65530, 8, 2, 65534, 8, -1610612734, 6, 10, -1610612734, 10, 10, 2, 65526, 10, 2, 65530, 10, 2, 2, 65526, 2, 6, 65526, 2, 10, 65526, 2, 65526, 65526, 2, 65530, 65526, 2, 65534, 65526, 2, 2, 65528, 2, 6, 65528, 2, 10, 65528, 2, 65526, 65528, 2, 65530, 65528, 2, 65534, 65528, 2, 2, 65530, 2, 6, 65530, 2, 10, 65530, 2, 65526, 65530, 2, 65530, 65530, 2, 65534, 65530, 2, 6, 65532, 2, 10, 65532, 2, 65526, 65532, 2, 65530, 65532, 2, 2, 65534, 2, 65534, 65534, 2 )
+"cells": PoolIntArray( 6, 0, 536870914, 8, 0, 2, 65528, 0, 2, 65530, 0, 2, 2, 2, -1610612734, 65534, 2, 2, 0, 3, 2, 2, 4, 2, 6, 4, 2, 10, 4, 2, 65526, 4, 2, 65530, 4, 2, 65534, 4, 2, 2, 6, 2, 6, 6, 2, 10, 6, 2, 65526, 6, 2, 65530, 6, 2, 65534, 6, 2, 2, 8, 2, 6, 8, 2, 10, 8, 2, 65526, 8, 2, 65530, 8, 1073741826, 65534, 8, 2, 6, 10, 2, 10, 10, 2, 65526, 10, 2, 65530, 10, 2, 2, 65526, 2, 6, 65526, 2, 10, 65526, 2, 65526, 65526, 2, 65530, 65526, 2, 65534, 65526, 2, 2, 65528, 2, 6, 65528, 2, 10, 65528, 1073741826, 65526, 65528, 2, 65530, 65528, 2, 65534, 65528, 2, 2, 65530, 2, 6, 65530, 2, 10, 65530, 2, 65526, 65530, 2, 65530, 65530, 536870914, 65534, 65530, 536870914, 6, 65532, 2, 10, 65532, 2, 65526, 65532, 2, 65530, 65532, 2, 2, 65534, 2, 65534, 65534, 2 )
 }
 __meta__ = {
 "_editor_clip_": 0
@@ -61,6 +62,7 @@ material/1 = ExtResource( 6 )
 material/2 = ExtResource( 6 )
 material/3 = ExtResource( 6 )
 material/4 = ExtResource( 6 )
+script = ExtResource( 7 )
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
 transform = Transform( 0.999781, 0.0167581, -0.0125574, 0, 0.59966, 0.800255, 0.0209409, -0.800079, 0.599528, 0.165947, 16.3983, 15.1673 )
