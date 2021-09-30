@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://models/player.obj" type="ArrayMesh" id=1]
+[ext_resource path="res://player/player.gdns" type="Script" id=2]
+[ext_resource path="res://player/player_yellow.material" type="Material" id=3]
+
+[sub_resource type="BoxShape" id=1]
+
+[node name="Player" type="KinematicBody"]
+input_ray_pickable = false
+collision/safe_margin = 0.01
+script = ExtResource( 2 )
+
+[node name="Collider" type="CollisionShape" parent="."]
+transform = Transform( 0.8, 0, 0, 0, 0.4, 0, 0, 0, 0.8, 0, 0.4, 0 )
+shape = SubResource( 1 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Mesh" type="MeshInstance" parent="."]
+mesh = ExtResource( 1 )
+material/0 = ExtResource( 3 )
+material/1 = ExtResource( 3 )
+material/2 = ExtResource( 3 )
+material/3 = ExtResource( 3 )
+material/4 = ExtResource( 3 )

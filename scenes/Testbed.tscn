@@ -1,69 +1,76 @@
 [gd_scene load_steps=11 format=2]
 
-[ext_resource path="res://models/player.obj" type="ArrayMesh" id=1]
-[ext_resource path="res://objects/floor/floor_solid.material" type="Material" id=2]
-[ext_resource path="res://objects/floor/floor_river.material" type="Material" id=3]
-[ext_resource path="res://objects/wall/wall_full.material" type="Material" id=4]
+[ext_resource path="res://player/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://floor/floor_solid.material" type="Material" id=2]
+[ext_resource path="res://floor/floor_river.material" type="Material" id=3]
+[ext_resource path="res://wall/wall_full.material" type="Material" id=4]
 [ext_resource path="res://godot_battle_city.meshlib" type="MeshLibrary" id=5]
-[ext_resource path="res://objects/player/player_yellow.material" type="Material" id=6]
-[ext_resource path="res://objects/player/player.gdns" type="Script" id=7]
 
 [sub_resource type="PlaneMesh" id=1]
 
 [sub_resource type="CubeMesh" id=2]
 
-[sub_resource type="PlaneMesh" id=3]
+[sub_resource type="ConcavePolygonShape" id=3]
+data = PoolVector3Array( -1, 1, 1, 1, 1, 1, -1, -1, 1, 1, 1, 1, 1, -1, 1, -1, -1, 1, 1, 1, -1, -1, 1, -1, 1, -1, -1, -1, 1, -1, -1, -1, -1, 1, -1, -1, 1, 1, 1, 1, 1, -1, 1, -1, 1, 1, 1, -1, 1, -1, -1, 1, -1, 1, -1, 1, -1, -1, 1, 1, -1, -1, -1, -1, 1, 1, -1, -1, 1, -1, -1, -1, 1, 1, 1, -1, 1, 1, 1, 1, -1, -1, 1, 1, -1, 1, -1, 1, 1, -1, -1, -1, 1, 1, -1, 1, -1, -1, -1, 1, -1, 1, 1, -1, -1, -1, -1, -1 )
+
+[sub_resource type="PlaneMesh" id=4]
+
+[sub_resource type="BoxShape" id=5]
 
 [node name="World" type="Spatial"]
 
-[node name="Camera" type="Camera" parent="."]
-transform = Transform( 1, -4.10893e-07, 4.64205e-08, 0, 0.11226, 0.99368, -4.13507e-07, -0.993679, 0.11226, -0.134917, 18.4412, 3.04336 )
+[node name="Scene" type="Node" parent="."]
+
+[node name="Camera" type="Camera" parent="Scene"]
+transform = Transform( 0.999991, -0.00403985, 0.00151461, 0, 0.351056, 0.936354, -0.00431444, -0.936346, 0.351053, 0.0478426, 17.1118, 9.41331 )
+
+[node name="DirectionalLight" type="DirectionalLight" parent="Scene"]
+transform = Transform( 0.999781, 0.016758, -0.0125574, 0, 0.59966, 0.800255, 0.0209409, -0.800079, 0.599529, 0.165947, 16.3983, 15.1673 )
+light_energy = 4.0
+shadow_enabled = true
 
 [node name="floor_solid" type="MeshInstance" parent="."]
-visible = false
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 15.0132, 0, 0 )
 mesh = SubResource( 1 )
 material/0 = ExtResource( 2 )
 
 [node name="floor_river" type="MeshInstance" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.13285, 0, 0 )
-visible = false
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 18.0017, 0, 0 )
 mesh = SubResource( 1 )
 material/0 = ExtResource( 3 )
 
 [node name="wall_full" type="MeshInstance" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0874639, 0, 1.48201 )
-visible = false
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 15.3751, 0, 1.48201 )
 mesh = SubResource( 2 )
 material/0 = ExtResource( 4 )
 
-[node name="GridMap" type="GridMap" parent="."]
+[node name="StaticBody" type="StaticBody" parent="wall_full"]
+
+[node name="CollisionShape" type="CollisionShape" parent="wall_full/StaticBody"]
+shape = SubResource( 3 )
+
+[node name="Level" type="GridMap" parent="."]
 mesh_library = ExtResource( 5 )
 cell_size = Vector3( 1, 1, 1 )
 cell_center_x = false
-cell_center_y = false
 cell_center_z = false
 data = {
-"cells": PoolIntArray( 6, 0, 536870914, 8, 0, 2, 65528, 0, 2, 65530, 0, 2, 2, 2, -1610612734, 65534, 2, 2, 0, 3, 2, 2, 4, 2, 6, 4, 2, 10, 4, 2, 65526, 4, 2, 65530, 4, 2, 65534, 4, 2, 2, 6, 2, 6, 6, 2, 10, 6, 2, 65526, 6, 2, 65530, 6, 2, 65534, 6, 2, 2, 8, 2, 6, 8, 2, 10, 8, 2, 65526, 8, 2, 65530, 8, 1073741826, 65534, 8, 2, 6, 10, 2, 10, 10, 2, 65526, 10, 2, 65530, 10, 2, 2, 65526, 2, 6, 65526, 2, 10, 65526, 2, 65526, 65526, 2, 65530, 65526, 2, 65534, 65526, 2, 2, 65528, 2, 6, 65528, 2, 10, 65528, 1073741826, 65526, 65528, 2, 65530, 65528, 2, 65534, 65528, 2, 2, 65530, 2, 6, 65530, 2, 10, 65530, 2, 65526, 65530, 2, 65530, 65530, 536870914, 65534, 65530, 536870914, 6, 65532, 2, 10, 65532, 2, 65526, 65532, 2, 65530, 65532, 2, 2, 65534, 2, 65534, 65534, 2 )
+"cells": PoolIntArray( 6, 0, 2, 8, 0, 2, 65528, 0, 2, 65530, 0, 2, 2, 2, 2, 65534, 2, 2, 0, 3, 2, 2, 4, 2, 6, 4, 2, 10, 4, 2, 65526, 4, 2, 65530, 4, 2, 65534, 4, 2, 2, 6, 2, 6, 6, 2, 10, 6, 2, 65526, 6, 2, 65530, 6, 2, 65534, 6, 2, 2, 8, 2, 6, 8, 2, 10, 8, 2, 65526, 8, 2, 65530, 8, 2, 65534, 8, 2, 6, 10, 2, 10, 10, 2, 65526, 10, 2, 65530, 10, 2, 2, 65526, 2, 6, 65526, 2, 10, 65526, 2, 65526, 65526, 2, 65530, 65526, 2, 65534, 65526, 2, 2, 65528, 2, 6, 65528, 2, 10, 65528, 2, 65526, 65528, 2, 65530, 65528, 2, 65534, 65528, 2, 2, 65530, 2, 6, 65530, 2, 10, 65530, 2, 65526, 65530, 2, 65530, 65530, 2, 65534, 65530, 2, 6, 65532, 2, 10, 65532, 2, 65526, 65532, 2, 65530, 65532, 2, 2, 65534, 2, 65534, 65534, 2 )
 }
 __meta__ = {
 "_editor_clip_": 0
 }
 
-[node name="Floor" type="MeshInstance" parent="."]
-transform = Transform( 13, 0, 0, 0, 1, 0, 0, 0, 13, 0, 0, 0 )
-mesh = SubResource( 3 )
+[node name="Floor" type="StaticBody" parent="Level"]
+transform = Transform( 13, 0, 0, 0, 1, 0, 0, 0, 13, 0, 0.2, 0 )
+
+[node name="Mesh" type="MeshInstance" parent="Level/Floor"]
+mesh = SubResource( 4 )
 material/0 = ExtResource( 2 )
 
-[node name="player" type="MeshInstance" parent="."]
-transform = Transform( -0.00687658, 0, -0.999976, 0, 1, 0, 0.999976, 0, -0.00687658, 3.97147, 0, 0.0268917 )
-mesh = ExtResource( 1 )
-material/0 = ExtResource( 6 )
-material/1 = ExtResource( 6 )
-material/2 = ExtResource( 6 )
-material/3 = ExtResource( 6 )
-material/4 = ExtResource( 6 )
-script = ExtResource( 7 )
+[node name="CollisionShape" type="CollisionShape" parent="Level/Floor"]
+transform = Transform( 1, 0, 0, 0, 0.5, 0, 0, 0, 1, 0, -0.5, 0 )
+shape = SubResource( 5 )
 
-[node name="DirectionalLight" type="DirectionalLight" parent="."]
-transform = Transform( 0.999781, 0.0167581, -0.0125574, 0, 0.59966, 0.800255, 0.0209409, -0.800079, 0.599528, 0.165947, 16.3983, 15.1673 )
-light_energy = 4.0
+[node name="Player" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0 )
